@@ -5,135 +5,120 @@
     box-sizing: border-box;
 }
 
-/* Fonte e estilo básico do corpo */
+/* Corpo da página */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f7f7;
-    color: #333;
-    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-/* Estilo do artigo */
-article {
-    background-color: white;
-    border-radius: 10px;
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
 }
 
-/* Títulos secundários */
-h2 {
-    font-size: 1.8rem;
-    color: #4CAF50;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-/* Parágrafos */
-p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-/* Listas */
-ul {
-    margin-left: 20px;
-    list-style-type: disc;
-}
-
-ul li {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-/* Código */
-.code {
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    padding: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
+/* Título */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
     color: #333;
-    white-space: pre-wrap;
-    margin: 20px 0;
-    word-wrap: break-word;
-    border: 1px solid #ccc;
 }
 
-/* Botão */
-.button {
+/* Estilo dos inputs e select */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-bottom: 10px;
+    transition: border 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo do botão */
+.btn {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 30px;
-    font-size: 1.1rem;
+    padding: 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    width: 100%;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
-.button:hover {
+.btn:hover {
     background-color: #45a049;
 }
 
-/* Estilo do botão quando pressionado */
-.button:active {
-    background-color: #388e3c;
+/* Estilo da senha gerada */
+#senha {
+    font-size: 1.3rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 20px;
+    word-wrap: break-word;
+    text-align: center;
+    font-weight: bold;
 }
 
-/* Estilo para o botão de copiar senha */
-button.copy-btn {
+/* Estilo do botão copiar */
+.copy-btn {
     background-color: #007BFF;
+    margin-top: 10px;
 }
 
-button.copy-btn:hover {
+.copy-btn:hover {
     background-color: #0056b3;
 }
 
-/* Estilos para links */
-a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 /* Responsividade */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    article {
+@media (max-width: 480px) {
+    .container {
         padding: 20px;
     }
 
-    .code {
-        font-size: 1rem;
+    h1 {
+        font-size: 1.6rem;
     }
 
-    .button {
-        padding: 10px 25px;
+    .btn, .copy-btn {
+        font-size: 1rem;
     }
 }

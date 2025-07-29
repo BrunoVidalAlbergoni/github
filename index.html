@@ -3,120 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segurança Digital: Utilizando Matemática para Programar Senhas Seguras</title>
+    <title>Gerador de Senha Segura</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        article {
-            background-color: white;
-            padding: 20px;
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
-        h1, h2 {
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
             color: #333;
         }
-        p {
-            color: #555;
-            line-height: 1.6;
+
+        .input-group {
+            margin-bottom: 15px;
         }
-        .code {
-            background-color: #e7e7e7;
-            padding: 10px;
-            border-radius: 4px;
-            font-family: Courier, monospace;
+
+        .input-group label {
             display: block;
-            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-        .button {
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .input-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .btn {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
+            width: 100%;
             cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
         }
-        .button:hover {
+
+        .btn:hover {
             background-color: #45a049;
+        }
+
+        #senha {
+            font-size: 1.2rem;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            background-color: #f7f7f7;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background-color: #007BFF;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Segurança Digital: Utilizando Matemática para Programar Senhas Seguras</h1>
-    </header>
 
-    <article>
-        <h2>Por que Senhas Fortes São Importantes?</h2>
-        <p>
-            A segurança das informações pessoais depende diretamente da força das senhas utilizadas. Senhas simples, como "123456" ou "senha123", são facilmente quebradas por ataques automatizados, conhecidos como ataques de força bruta. Senhas fortes devem ser longas, aleatórias e combinar caracteres de diferentes tipos: letras maiúsculas e minúsculas, números e símbolos.
-        </p>
+<div class="container">
+    <h1>Gerador de Senha Segura</h1>
 
-        <h2>Como a Matemática Ajuda na Criação de Senhas?</h2>
-        <p>
-            A matemática desempenha um papel fundamental na criação de senhas seguras. Uma das técnicas mais utilizadas é a geração de senhas aleatórias, que pode ser baseada em funções matemáticas, como a geração de números pseudo-aleatórios. Essas funções são essenciais para garantir que as senhas não sejam previsíveis.
-        </p>
-        <p>
-            Além disso, conceitos como combinatória e probabilidade podem ser usados para calcular o número de combinações possíveis de caracteres em uma senha e, assim, avaliar sua resistência.
-        </p>
+    <div class="input-group">
+        <label for="comprimento">Comprimento da senha:</label>
+        <input type="number" id="comprimento" value="12" min="6" max="20">
+    </div>
 
-        <h2>Exemplo de Algoritmo para Gerar Senhas Aleatórias</h2>
-        <p>
-            Vamos ver um exemplo de código que utiliza matemática para gerar uma senha segura. O código abaixo usa uma função simples para gerar senhas aleatórias combinando caracteres alfanuméricos e símbolos:
-        </p>
-        
-        <pre class="code">
-function gerarSenha(tamanho) {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
-    let senha = '';
-    for (let i = 0; i < tamanho; i++) {
-        const indice = Math.floor(Math.random() * caracteres.length);
-        senha += caracteres[indice];
+    <div class="input-group">
+        <label for="incluir-maiusculas">Incluir letras maiúsculas:</label>
+        <input type="checkbox" id="incluir-maiusculas" checked>
+    </div>
+
+    <div class="input-group">
+        <label for="incluir-numeros">Incluir números:</label>
+        <input type="checkbox" id="incluir-numeros" checked>
+    </div>
+
+    <div class="input-group">
+        <label for="incluir-simbolos">Incluir símbolos:</label>
+        <input type="checkbox" id="incluir-simbolos" checked>
+    </div>
+
+    <button class="btn" onclick="gerarSenha()">Gerar Senha</button>
+
+    <input type="text" id="senha" readonly>
+
+    <button class="btn copy-btn" onclick="copiarSenha()">Copiar Senha</button>
+</div>
+
+<script>
+    function gerarSenha() {
+        const comprimento = document.getElementById("comprimento").value;
+        const incluirMaiusculas = document.getElementById("incluir-maiusculas").checked;
+        const incluirNumeros = document.getElementById("incluir-numeros").checked;
+        const incluirSimbolos = document.getElementById("incluir-simbolos").checked;
+
+        const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
+        const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numeros = '0123456789';
+        const simbolos = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+        let caracteres = letrasMinusculas;
+
+        if (incluirMaiusculas) {
+            caracteres += letrasMaiusculas;
+        }
+        if (incluirNumeros) {
+            caracteres += numeros;
+        }
+        if (incluirSimbolos) {
+            caracteres += simbolos;
+        }
+
+        let senhaGerada = '';
+        for (let i = 0; i < comprimento; i++) {
+            const indice = Math.floor(Math.random() * caracteres.length);
+            senhaGerada += caracteres[indice];
+        }
+
+        document.getElementById("senha").value = senhaGerada;
     }
-    return senha;
-}
 
-const senhaSegura = gerarSenha(16);  // Gera uma senha com 16 caracteres
-console.log(senhaSegura);
-        </pre>
-        
-        <p>
-            Neste código, utilizamos a função <code>Math.random()</code> para gerar números aleatórios e selecionar caracteres de uma lista, garantindo a imprevisibilidade da senha. O número de combinações possíveis cresce exponencialmente com o aumento do tamanho da senha.
-        </p>
+    function copiarSenha() {
+        const senha = document.getElementById("senha");
+        senha.select();
+        senha.setSelectionRange(0, 99999); // Para dispositivos móveis
+        document.execCommand("copy");
+        alert("Senha copiada: " + senha.value);
+    }
+</script>
 
-        <h2>Combinatória e Força das Senhas</h2>
-        <p>
-            Se quisermos calcular a força de uma senha, podemos usar o conceito de combinatória. A quantidade de combinações possíveis para uma senha depende do número de caracteres e do conjunto de símbolos que ela utiliza. Por exemplo:
-        </p>
-        <ul>
-            <li>Se a senha tiver 8 caracteres e usar 62 símbolos (letras maiúsculas, minúsculas e números), o número total de combinações seria <strong>62^8</strong>.</li>
-            <li>Com 16 caracteres e um conjunto de 95 símbolos (incluindo caracteres especiais), o número total de combinações seria <strong>95^16</strong>.</li>
-        </ul>
-        <p>
-            O número de combinações possíveis aumenta significativamente conforme a senha fica mais longa e diversificada, tornando o ataque de força bruta muito mais difícil.
-        </p>
-
-        <h2>Como Criar Senhas Seguras</h2>
-        <p>
-            Para garantir senhas seguras, siga estas recomendações:
-        </p>
-        <ul>
-            <li>Use pelo menos 12 caracteres.</li>
-            <li>Inclua letras maiúsculas e minúsculas, números e caracteres especiais.</li>
-            <li>Evite sequências óbvias, como "12345" ou "abcdef".</li>
-            <li>Utilize um gerenciador de senhas para criar e armazenar senhas únicas e complexas para cada site.</li>
-        </ul>
-        <button class="button" onclick="alert('Senha gerada: ' + gerarSenha(16))">Gerar Senha Segura</button>
-    </article>
 </body>
 </html>
